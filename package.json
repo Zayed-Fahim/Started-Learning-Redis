@@ -1,0 +1,14 @@
+{
+  "name": "explore-redis-retry",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server"
+  },
+  "dependencies": {
+    "axios": "^1.6.3",
+    "express": "^4.18.2",
+    "ioredis": "^5.3.2"
+  }
+}
