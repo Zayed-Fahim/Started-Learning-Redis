@@ -1,7 +1,7 @@
 // necessary imports
 const client = require("../utils/connect");
 
-const redisCached = async (req, res, next) => {
+const redisToDoCache = async (req, res, next) => {
   try {
     // check if already cached
     const alreadyCached = await client.get("toDos");
@@ -15,11 +15,14 @@ const redisCached = async (req, res, next) => {
     // if not cached, you can handle this case or simply return a message
     const toDos = await client.get("toDos");
     if (!toDos) {
-      next();
+      return next();
     } else {
-      res
+      return res
         .status(200)
-        .json({ message: "Successful from redis cached data", payload: JSON.parse(toDos) });
+        .json({
+          message: "Successful from redis cached data",
+          payload: JSON.parse(toDos),
+        });
     }
   } catch (error) {
     console.error(error.message);
@@ -30,4 +33,4 @@ const redisCached = async (req, res, next) => {
   }
 };
 
-module.exports = redisCached;
+module.exports = redisToDoCache;

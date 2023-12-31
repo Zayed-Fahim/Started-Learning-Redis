@@ -21,7 +21,7 @@ const getToDos = async (req, res, next) => {
       await client.expire("toDos", 60);
       return res.status(200).json({
         message: "Successful save to redis",
-        payload: JSON.stringify(toDos),
+        payload: toDos,
       });
     }
     res
